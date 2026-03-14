@@ -17,7 +17,8 @@ public class ScrollByValue {
         List<WebElement> lists=driver.findElements(By.xpath("//*[@class='tableFixHead']//tbody//tr//td[4]"));
         int sum=0;
         for(int i=0;i<lists.size();i++){
-            sum=sum+Integer.parseInt(lists.get(i).getText());
+            int sum1=Integer.parseInt(lists.get(i).getText());
+            sum=sum+sum1;
         }
         System.out.println("sum:"+sum);
         String text=driver.findElement(By.xpath("//*[@class='totalAmount']")).getText().split(":")[1].trim();

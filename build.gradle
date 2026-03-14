@@ -16,7 +16,10 @@ dependencies {
     implementation 'org.seleniumhq.selenium:selenium-java:4.38.0'
     // https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager
     implementation 'io.github.bonigarcia:webdrivermanager:6.3.3'
+    // ⭐ Screenshot save করার জন্য (IMPORTANT)
+    implementation 'commons-io:commons-io:2.15.1'
 }
+
 
 test {
     useTestNG()

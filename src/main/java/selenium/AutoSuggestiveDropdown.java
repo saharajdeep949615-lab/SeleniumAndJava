@@ -13,31 +13,30 @@ import java.util.List;
 
 public class AutoSuggestiveDropdown {
     public static void main(String[] args) throws InterruptedException {
-        WebDriver driver=new ChromeDriver();
-        driver.get("https://rahulshettyacademy.com/dropdownsPractise/");
-        driver.manage().window().maximize();
+       WebDriver driver=new ChromeDriver();
+       driver.get("https://rahulshettyacademy.com/dropdownsPractise/");
+       driver.manage().window().maximize();
 
-        driver.findElement(By.xpath("//*[@id='autosuggest']")).sendKeys("ind");
+       driver.findElement(By.xpath("//*[@id='autosuggest']")).sendKeys("ind");
+       Thread.sleep(2000);
 
-        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+       WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(5));
+       wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ui-menu-item']")));
 
-        WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='ui-menu-item']")));
-
-        List<WebElement> lists=driver.findElements(By.xpath("//*[@class='ui-menu-item']"));
-        boolean found = false;
-        for(int i=0;i<lists.size();i++){
-            String country=lists.get(i).getText();
-            if(country.equalsIgnoreCase("India")){
-                lists.get(i).click();
-                System.out.println("Country: "+country);
-                found = true;
-                break;
-            }
-        }
-        if(!found){
-            throw new RuntimeException("Country not found!");
-        }
-        driver.quit();
+       List<WebElement> lists=driver.findElements(By.xpath("//*[@class='ui-menu-item']"));
+       boolean found=false;
+       for(int i=0;i<lists.size();i++){
+           String country=lists.get(i).getText();
+           if(country.equals("India")){
+               lists.get(i).click();
+               System.out.println("Country:"+country);
+               found=true;
+               break;
+           }
+       }
+       if(!found){
+           throw new RuntimeException("Country not found");
+       }
+       driver.quit();
     }
 }
